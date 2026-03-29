@@ -1,0 +1,56 @@
+CREATE TABLE product (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    category VARCHAR(50),
+    price NUMERIC(10,2),
+    stock INT
+);
+
+INSERT INTO product (name, category, price, stock)
+VALUES ('iPhone 15 Pro', 'Điện tử', 28000000, 15),
+    ('Samsung Galaxy S24', 'Điện tử', 22000000, 10),
+    ('Loa Bluetooth Sony', 'Điện tử', 2500000, 50),
+    ('Bàn làm việc gỗ', 'Nội thất', 1500000, 5),
+    ('Chuột không dây Logitech', 'Điện tử', 500000, 100);
+
+SELECT * FROM product;
+
+SELECT * FROM product
+ORDER BY price DESC
+LIMIT 3;
+
+SELECT * FROM product
+WHERE category = 'Điện tử' AND price < 10000000;
+
+SELECT * FROM product
+ORDER BY stock ASC;
+
+
+CREATE TABLE employee (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(100),
+    department VARCHAR(50),
+    salary NUMERIC(10,2),
+    hire_date DATE
+);
+
+INSERT INTO employee (full_name, department, salary, hire_date)
+VALUES ('Nguyễn Văn An', 'IT', 2800000, '2023-03-04'),
+       ('Lê Thị Bình', 'Marketing', 22000000, '2025-10-01'),
+       ('Trần Xuân Chiến', 'HR', 2500000, '2023-12-23'),
+       ('Hà Xuân Duy', 'IT', 15000000, '2026-01-10'),
+       ('Trịnh Thị Em', 'Marketing', 50000000, '2024-05-01');
+
+UPDATE employee
+SET salary = salary * 1.1
+WHERE department = 'IT';
+
+DELETE FROM employee
+WHERE salary < 6000000;
+
+SELECT * FROM employee
+WHERE full_name ILIKE '%An%';
+
+SELECT * FROM employee
+WHERE hire_date BETWEEN '2023-01-01' AND '2023-12-31'
+ORDER BY hire_date ASC;
